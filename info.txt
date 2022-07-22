@@ -1,1 +1,9 @@
 Hello visitors!
+
+------------Forntend development------------
+open instaclone folder
+    -> I have used React App 
+
+------------Backend development-------------
+open Backend folder
+    -> I have used NodeJs, ExpressJs, MongoDB and Axios API connectivity.
