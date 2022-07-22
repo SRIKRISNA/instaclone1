@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended:false}));
 
 
 //database
-mongoose.connect("mongodb://localhost/instaclone", (db)=> {
+mongoose.connect("mongodb+srv://krishna:spkrishna@krishnacluster.xjap0dj.mongodb.net/instaclone?retryWrites=true&w=majority", (db)=> {
     console.log("connected to db")
 }, (err)=> {
     console.log(err);
@@ -47,7 +47,7 @@ mongoose.connect("mongodb://localhost/instaclone", (db)=> {
 //     console.log("DB connected successfully");
 //   });
 
-const port = process.env.Port || 3005;
+const port = process.env.PORT || 3005;
 
 const server = app.listen(port, () => {
   console.log("Server is up listening on port:" + port);
