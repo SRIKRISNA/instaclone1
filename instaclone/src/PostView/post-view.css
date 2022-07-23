@@ -8,6 +8,7 @@
     padding-bottom: 20px;
     display: block;
     margin: 20px auto;
+    background: white;
 }
 .nav{
     min-height: 40px;
@@ -25,6 +26,8 @@
 }
 .postContainer{
     padding-top: 60px;
+    background: #0f0808;
+    padding-bottom: 1px;
 }
 #logo{
     margin-left: 5vw;
@@ -65,4 +68,13 @@ h3 > span{
 }
 #likes{
     padding-right: 10px;
+}
+
+/* footer */
+#footer{
+    background: #7f0392;
+    color: white;
+    width: 100w;
+    bottom: 0;
+    padding: 1px 0px;
 }
