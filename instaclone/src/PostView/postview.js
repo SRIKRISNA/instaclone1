@@ -1,5 +1,5 @@
 import Logo from "../assests/instaclone.svg";
-import Camera from "../assests/camera.png";
+import Camera from "../assests/camera.gif";
 import { useEffect, useState} from "react";
 import "./post-view.css";
 import axios from "axios";
@@ -22,11 +22,11 @@ const PostView = ()=> {
             <div className="container">
                 <header>
                     <div className="nav">
-                        <a href="/"> <img src={Logo} alt="insta-logo" id="logo"></img></a>
-                        <a href="./postform"><img src={Camera} alt="camera" id="camera"></img></a>
+                        <a href="/"> <img src={Logo} alt="insta-logo" id="logo" title="Go to Home Page"></img></a>
+                        <a href="./postform"><img src={Camera} alt="camera" id="camera" title="Post now your memories!"></img></a>
                     </div>
                 </header>
-                <div >
+                <div className="postContainer">
                     {
                         userData.map((post,i)=> {
                             return (
@@ -36,7 +36,7 @@ const PostView = ()=> {
                                         <span id="dots"><h1>...</h1></span>
                                     </div>
                                     <div className="user-image">
-                                        <img src={post.image} alt="user-defined-imge"></img>
+                                        <img src={post.image} id="postimg" alt="user-defined-imge"></img>
                                     </div>
                                     <div className="user-meta">
                                         <span>{post.date}</span>
