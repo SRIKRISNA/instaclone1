@@ -4,6 +4,7 @@ const postModel = require("./schema")
 const express = require("express");
 //const bodyParser = require("body-parser");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
@@ -27,7 +28,7 @@ app.use(express.urlencoded({extended:false}));
 
 
 //database
-mongoose.connect("mongodb+srv://krishna:spkrishna@krishnacluster.xjap0dj.mongodb.net/instaclone?retryWrites=true&w=majority", (db)=> {
+mongoose.connect(process.env.MONGOKEY, (db)=> {
     console.log("connected to db")
 }, (err)=> {
     console.log(err);
