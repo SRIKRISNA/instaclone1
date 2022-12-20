@@ -15,7 +15,15 @@ const PostView = ()=> {
             console.log(err)
         })
     }, []);
-
+    // function deletePost(userData) {
+	// 	let updatedPost = [...userData].filter((post) => post.userData !== userData);
+	// 	setPostData(updatedPost);
+	// }
+    function deletePost(_id) {
+        const newList = userData.filter((item) => item._id !== _id);
+    
+        setPostData(newList);
+      }
    //`${new Date().toLocaleString()}`
     return (
         <>
@@ -30,7 +38,7 @@ const PostView = ()=> {
                                 <div className="post">
                                     <div className="user-information" key={i}>
                                         <div id="name_location"><h3>{post.author}</h3>{post.location}</div>
-                                        <span id="dots"><h1>...</h1></span>
+                                        <span id="dots"><button onClick={() => deletePost(post._id)}>Delete</button></span>
                                     </div>
                                     <div className="user-image">
                                         <img src={post.image} id="postimg" alt="user-defined-imge"></img>
