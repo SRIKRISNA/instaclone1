@@ -1,31 +1,16 @@
-//const app = require("./app");
 const mongoose = require("mongoose");
 const postModel = require("./schema")
 const express = require("express");
-//const bodyParser = require("body-parser");
 const cors = require("cors");
 require("dotenv").config();
+// const UserController = require('./routes/userR')
 
 const app = express();
 
-// Configurations for "body-parser"
-// app.use(
-//     bodyParser.urlencoded({
-//       extended: true,
-//     })
-// );
 //middleware 
 app.use(express.json({limit: "30mb", extended: true}));
 app.use(cors());
 app.use(express.urlencoded({extended:false}));
-
-// process.on("uncaughtException", (err) => {
-//   console.log("UNCAUGHT EXCEPTION, APP SHUTTING NOW!!");
-//   console.log(err.message, err.name);
-//   process.exit(1);
-// });
-
-
 
 //database
 mongoose.connect(process.env.MONGOKEY, (db)=> {
@@ -35,18 +20,6 @@ mongoose.connect(process.env.MONGOKEY, (db)=> {
 });
 
 // const DB = "mongodb://localhost/instaclone";
-
-// mongoose
-//   .connect(DB, {
-//     useCreateIndex: true,
-//     useFindAndModify: true,
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//     autoIndex: true,
-//   })
-//   .then(() => {
-//     console.log("DB connected successfully");
-//   });
 
 const port = process.env.PORT || 3005;
 
@@ -83,4 +56,21 @@ app.post("/postform",(req,res)=>{
         res.status(400).send(err);
     })
 })
+app.delete("/delete/:_id",(req,res)=>{
+    postModel.find({_id: req.params._id}).then(()=>{
+        try{
+            postModel.deleteOne({_id: req.params._id}).then((post)=>{
+                console.log("post deleted  successfully")
+                res.status(200).send("Post Deleted")
 
+            }).catch((err)=>{
+                console.log(err)
+                res.status(400).send("Post Deleted")
+            })
+        }catch(err){
+            res.status(400).send("Post Not found")
+        }
+    })
+})
+
+// app.use('/user', UserController);

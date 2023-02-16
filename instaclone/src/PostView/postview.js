@@ -7,7 +7,7 @@ import Footer from "../Footer/footer";
 const PostView = ()=> {
     const [userData, setPostData] = useState([]);
     useEffect(()=> {
-        axios.get('https://instacloneserver.herokuapp.com/postform').then((res)=>{
+        axios.get('http://localhost:3005/postform').then((res)=>{
             let data = res.data.reverse();
             console.log(data)
             setPostData(data);
@@ -15,16 +15,16 @@ const PostView = ()=> {
             console.log(err)
         })
     }, []);
-    // function deletePost(userData) {
-	// 	let updatedPost = [...userData].filter((post) => post.userData !== userData);
-	// 	setPostData(updatedPost);
-	// }
-    function deletePost(_id) {
-        const newList = userData.filter((item) => item._id !== _id);
     
-        setPostData(newList);
-      }
-   //`${new Date().toLocaleString()}`
+    function deletePost(_id) {
+        axios.delete(`http://localhost:3005/delete/${_id}`).then((res) => {
+            const newList = userData.filter((item) => item._id !== _id);
+            setPostData(newList);
+            console.log("post deleted");
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
     return (
         <>
             <div className="container">
@@ -38,7 +38,7 @@ const PostView = ()=> {
                                 <div className="post">
                                     <div className="user-information" key={i}>
                                         <div id="name_location"><h3>{post.author}</h3>{post.location}</div>
-                                        <span id="dots"><button onClick={() => deletePost(post._id)}>Delete</button></span>
+                                        <span id="dots"><button onClick={() => deletePost(post._id)} id="delete_btn">X</button></span>
                                     </div>
                                     <div className="user-image">
                                         <img src={post.image} id="postimg" alt="user-defined-imge"></img>
