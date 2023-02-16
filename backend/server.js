@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const postModel = require("./schema")
 const express = require("express");
 const cors = require("cors");
+const path = require('path');
 require("dotenv").config();
 // const UserController = require('./routes/userR')
 
@@ -18,6 +19,12 @@ mongoose.connect(process.env.MONGOKEY, (db)=> {
 }, (err)=> {
     console.log(err);
 });
+// static files
+app.use(express.static(path.join(__dirname, './instaclone/build')));
+
+app.get('*', function(req, res){
+    res.sendFile(path.join(__dirname, './instaclone/build/index.html'))
+})
 
 // const DB = "mongodb://localhost/instaclone";
 

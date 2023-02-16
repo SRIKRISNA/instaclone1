@@ -1,4 +1,5 @@
 {
+  "proxy":"http://localhost:3005"
   "name": "sharepost",
   "version": "0.1.0",
   "private": true,
